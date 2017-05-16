@@ -22,14 +22,13 @@
     <!-- Elktra Theme Style -->
     <link rel="stylesheet" href="css/elektra_styles.css" media="screen" title="no title" charset="utf-8">
 
-  <body class="nav-md">
+  <body class="nav-md" ng-app="elektra" data-ng-controller="motas_ctrl">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="principal_admin.html" class="site_title"><i class="fa fa-leaf
-"></i> <span>Control de motas</span></a>
+              <a href="principal_admin.html" class="site_title"><i class="fa fa-leaf"></i> <span>Control de motas</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -219,205 +218,10 @@
                     <br>
                     <div class="row">
 
-                      <!-- Caja Aula 1-->
-                      <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                        <div class="x_panel">
-                          <div class="x_title">
-                            <a href="mota1.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula 1</button></a>
-                            <!-- Barra Superior Configuracion Caja Mota -->
-                            <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                              </li>
-
-                              <!-- Dropdown Menu configuracion Caja Mota-->
-                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li><a href="#">Settings 1</a>
-                                  </li>
-                                  <li><a href="#">Settings 2</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-
-                          <!-- Contenido Caja Mota-->
-                          <div class="x_content">
-                            <div>
-                              <!-- Atributos Caja Mota -->
-                              <div class="col-md-12 col-sm-4 tile_stats_count alert alert-danger alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="glyphicon glyphicon-fire"></i></span>
-                                <span class="count"> 24 C°</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-success alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-flash"></i></span>
-                                <span class="count"> 256 kwh</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-info alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-tint"></i></span>
-                                <span class="count"> 80 %</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count" id="sensores">
-                                <span class="count_top"><i class="fa fa-clock-o"></i></span>
-                                <span class="count"> 12:35</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div ng-repeat="mota in motas">
+                          <div ng-include="'views/caja_aula.html'"></div>
                       </div>
-                      <!-- Caja Aula 1-->
 
-                      <!-- Caja Aula 2-->
-                      <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                        <div class="x_panel">
-                          <div class="x_title">
-                            <a href="mota1.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula 2</button></a>
-                            <!-- Barra Superior Configuracion Caja Mota -->
-                            <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                              </li>
-
-                              <!-- Dropdown Menu configuracion Caja Mota-->
-                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li><a href="#">Settings 1</a>
-                                  </li>
-                                  <li><a href="#">Settings 2</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-
-                          <!-- Contenido Caja Mota-->
-                          <div class="x_content">
-                            <div>
-                              <!-- Atributos Caja Mota -->
-                              <div class="col-md-12 col-sm-4 tile_stats_count alert alert-danger alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="glyphicon glyphicon-fire"></i></span>
-                                <span class="count"> 24 C°</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-success alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-flash"></i></span>
-                                <span class="count"> 256 kwh</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-info alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-tint"></i></span>
-                                <span class="count"> 80 %</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count" id="sensores">
-                                <span class="count_top"><i class="fa fa-clock-o"></i></span>
-                                <span class="count"> 12:35</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Caja Aula 2-->
-
-                      <!-- Caja Aula 3-->
-                      <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                        <div class="x_panel">
-                          <div class="x_title">
-                            <a href="mota1.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula 3</button></a>
-                            <!-- Barra Superior Configuracion Caja Mota -->
-                            <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                              </li>
-
-                              <!-- Dropdown Menu configuracion Caja Mota-->
-                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li><a href="#">Settings 1</a>
-                                  </li>
-                                  <li><a href="#">Settings 2</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-
-                          <!-- Contenido Caja Mota-->
-                          <div class="x_content">
-                            <div>
-                              <!-- Atributos Caja Mota -->
-                              <div class="col-md-12 col-sm-4 tile_stats_count alert alert-danger alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="glyphicon glyphicon-fire"></i></span>
-                                <span class="count"> 24 C°</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-success alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-flash"></i></span>
-                                <span class="count"> 256 kwh</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-info alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-tint"></i></span>
-                                <span class="count"> 80 %</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count" id="sensores">
-                                <span class="count_top"><i class="fa fa-clock-o"></i></span>
-                                <span class="count"> 12:35</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Caja Aula 3-->
-
-                      <!-- Caja Aula 4-->
-                      <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                        <div class="x_panel">
-                          <div class="x_title">
-                            <a href="mota1.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula 4</button></a>
-                            <!-- Barra Superior Configuracion Caja Mota -->
-                            <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                              </li>
-
-                              <!-- Dropdown Menu configuracion Caja Mota-->
-                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li><a href="#">Settings 1</a>
-                                  </li>
-                                  <li><a href="#">Settings 2</a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-
-                          <!-- Contenido Caja Mota-->
-                          <div class="x_content">
-                            <div>
-                              <!-- Atributos Caja Mota -->
-                              <div class="col-md-12 col-sm-4 tile_stats_count alert alert-danger alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="glyphicon glyphicon-fire"></i></span>
-                                <span class="count"> 24 C°</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-success alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-flash"></i></span>
-                                <span class="count"> 256 kwh</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-info alert-dismissible fade in" id="sensores">
-                                <span class="count_top"><i class="fa fa-tint"></i></span>
-                                <span class="count"> 80 %</span>
-                              </div>
-                              <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count" id="sensores">
-                                <span class="count_top"><i class="fa fa-clock-o"></i></span>
-                                <span class="count"> 12:35</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Caja Aula 4-->
 
                     </div>
                   </div>
@@ -457,6 +261,10 @@
     <script src="vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular_module.js"></script>
+
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
