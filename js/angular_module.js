@@ -7,15 +7,35 @@ motas = [
             {"mota_id":5,"aula":"5","estado":0,"temp":21,"hume":68,"consumo":150,"hora":"11:45"}
 ];
 
-var app = angular.module("elektra", []);
+var app = angular.module("elektra", ['ngRoute']);
+
+app.config(function ($routeProvider, $locationProvider) {
+        // configure the routing rules here
+        $routeProvider
+        .when('/', {
+            templateUrl: '/views/mota.html',
+        })
+        .when('/pepe', {
+            controller: 'mota_ctrl'
+        });
+
+});
+
 app.controller("motas_ctrl", function($scope) {
-  $scope.motas = motas;
+    $scope.motas = motas;
+
+});
 
 app.directive("myInclude", function() {
 return {
     restrict: "E",
     templateUrl: "/views/caja_aula.html"
     }
-    })
+});
+
+app.controller("mota_ctrl", function($scope, $routeParams) {
+    console.log("HOLAAAAAA");
+    $scope.mota_id = $routeParams.mota_id;
+    window.location.replace('/mota.html');
 });
 

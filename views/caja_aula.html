@@ -2,7 +2,7 @@
                       <div class="col-md-3 col-xs-12 widget widget_tally_box">
                         <div class="x_panel">
                           <div class="x_title">
-                            <a href="mota1.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula {{ mota.aula }}</button></a>
+                            <a href="mota.html"><button type="button" class="btn btn-info" id="botones_aulas">Aula {{ mota.aula }}</button></a>
                             <!-- Barra Superior Configuracion Caja Mota -->
                             <ul class="nav navbar-right panel_toolbox">
                               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -28,19 +28,19 @@
                               <!-- Atributos Caja Mota -->
                               <div class="col-md-12 col-sm-4 tile_stats_count alert alert-danger alert-dismissible fade in" id="sensores">
                                 <span class="count_top"><i class="glyphicon glyphicon-fire"></i></span>
-                                <span class="count"> 24 C°</span>
+                                <span class="count"> {{mota.temp}} C°</span>
                               </div>
                               <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-success alert-dismissible fade in" id="sensores">
                                 <span class="count_top"><i class="fa fa-flash"></i></span>
-                                <span class="count"> 256 kwh</span>
+                                <span class="count"> {{mota.consumo}} kwh</span>
                               </div>
                               <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count alert alert-info alert-dismissible fade in" id="sensores">
                                 <span class="count_top"><i class="fa fa-tint"></i></span>
-                                <span class="count"> 80 %</span>
+                                <span class="count"> {{mota.hume}} %</span>
                               </div>
                               <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count" id="sensores">
                                 <span class="count_top"><i class="fa fa-clock-o"></i></span>
-                                <span class="count"> 12:35</span>
+                                <span class="count"> {{mota.hora}} </span>
                               </div>
                             </div>
                           </div>
