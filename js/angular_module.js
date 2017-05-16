@@ -11,12 +11,17 @@ var app = angular.module("elektra", ['ngRoute']);
 
 app.config(function ($routeProvider, $locationProvider) {
         // configure the routing rules here
-        $routeProvider
-        .when('/', {
-            templateUrl: '/views/mota.html',
+        $locationProvider.html5Mode(true);
+        $routeProvider.when('/', {
+            controller: 'mota_ctrl',
+            templateUrl: '/views/mota.html'
+        });
+        $routeProvider.when("/pepe", {
+            redirectTo: '/views/mota.html'
         })
-        .when('/pepe', {
-            controller: 'mota_ctrl'
+        .otherwise({
+            controller: 'mota_ctrl',
+            redirectTo: '/views/mota.html'
         });
 
 });
@@ -36,6 +41,5 @@ return {
 app.controller("mota_ctrl", function($scope, $routeParams) {
     console.log("HOLAAAAAA");
     $scope.mota_id = $routeParams.mota_id;
-    window.location.replace('/mota.html');
 });
 
