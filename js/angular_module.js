@@ -1,15 +1,17 @@
 // Retrieve
-motas = [
-            {"mota_id":1,"aula":"1","estado":1,"temp":23,"hume":80,"consumo":120,"hora":"12:45"},
-            {"mota_id":2,"aula":"2","estado":1,"temp":13,"hume":77,"consumo":110,"hora":"12:55"},
-            {"mota_id":3,"aula":"3","estado":1,"temp":28,"hume":79,"consumo":100,"hora":"12:35"},
-            {"mota_id":4,"aula":"4","estado":1,"temp":20,"hume":81,"consumo":130,"hora":"12:25"},
-            {"mota_id":5,"aula":"5","estado":0,"temp":21,"hume":68,"consumo":150,"hora":"11:45"}
-];
+//Web Socket Communication with Python Server for data retrieval (PyMongo and Tornado Web Socket)
+var motas = [];
+var mota_id = 0;
+var aula = 0;
+var temp = 0;
+var hume = 0;
+var estado = 0;
+var consumo = 0;
+var hora = 0;
 
-var app = angular.module("elektra", ['ngRoute']);
+var app = angular.module("elektra", ['ngWebSocket']);
 
-app.config(function ($routeProvider, $locationProvider) {
+/*app.config(function ($routeProvider, $locationProvider) {
         // configure the routing rules here
         $locationProvider.html5Mode(true);
         $routeProvider.when('/', {
@@ -26,9 +28,50 @@ app.config(function ($routeProvider, $locationProvider) {
 
 });
 
-app.controller("motas_ctrl", function($scope) {
-    $scope.motas = motas;
+    .factory('Data', function($websocket){
 
+        // Open a WebSocket connection
+        var dataStream = $websocket('ws://localhost:8888/websocket');
+
+        var collection = [];
+
+        dataStream.onMessage(function(message) {
+            collection.push(JSON.parse(message.data));
+            console.log(collection);
+
+
+            /*mota_id = json.mota_id;
+            aula = json.aula;
+            temp = json.temperatura;
+            hume = json.humedad;
+            estado = json.estado;
+            consumo = json.consumo;
+            hora = json.hora;*/
+
+            /*collection.forEach(function(element) {
+                mota_aux = {}
+                mota_aux["mota_id"] = element["mota_id"];
+                console.log(mota_aux);
+                motas = [ {"mota_id": 1, "data": 1}, {"mota_id": 2, "data": 2}, {"mota_id": 3, "data": 3} ];
+                console.log(motas);
+            }, this);
+
+            //motas = collection;
+        });
+
+        var methods = {
+            collection: collection,
+            get: function() {
+                dataStream.send(JSON.stringify({ action: 'get' }));
+            }
+        };
+
+        return methods;
+    
+        })*/ 
+/*app.controller("MotasController", function($scope, Data) {
+    console.log("DATA ES " + Data);
+    $scope.Data = Data;    
 });
 
 app.directive("myInclude", function() {
@@ -41,5 +84,5 @@ return {
 app.controller("mota_ctrl", function($scope, $routeParams) {
     console.log("HOLAAAAAA");
     $scope.mota_id = $routeParams.mota_id;
-});
+});*/
 

@@ -18,15 +18,20 @@
 
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
-  <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style><style type="text/css"></style></head>
+    <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style><style type="text/css"></style>
 
     <!-- Elktra Theme Style -->
     <link rel="stylesheet" href="css/elektra_styles.css" media="screen" title="no title" charset="utf-8">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular_module.js"></script>
+    <script src="node_modules/angular-websocket/dist/angular-websocket.js"></script>
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="js/Highcharts-4.2.6/js/highcharts.js"></script>
+    <script src="js/Highcharts-4.2.6/js/highcharts-more.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-
-  <body class="nav-md" ng-app="elektra" data-ng-controller="motas_ctrl">
+</head>
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -220,11 +225,31 @@
                 <div class="">
                   <div class="x_content">
                     <br>
-                    <div class="row">
+                      <div class="row">
+                        <br>
+                        <label id="onbtn" class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                          <button type="button" name="on" value="on" onclick="on();">On</button>
+                        </label>
+                        <label id="offbtn" class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                          <button type="button" name="off" value="off" onclick="off();">Off</button>
+                        </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12 ancho100 ">
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>Corriente medida en el día</h2>
+                              <div class="clearfix"></div>
+                            </div>
+                              <div class="x_content">
+                                <div id="corriente_chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <div class="row">
 
-                      <div ng-repeat="mota in motas">
+                      <!--<div ng-repeat="mota in motas.collection ">
                           <div ng-include="'views/caja_aula.html'"></div>
-                      </div>
+                      </div>-->
 
 
                     </div>
@@ -249,8 +274,7 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -258,15 +282,15 @@
     <!-- NProgress -->
     <script src="vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
-    <script src="vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- <script src="vendors/Chart.js/dist/Chart.min.js"></script> -->
     <!-- jQuery Sparklines -->
     <script src="vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- easy-pie-chart -->
-    <script src="vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <!-- <script src="vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script> -->
     <!-- bootstrap-progressbar -->
     <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- angularjs -->
-    <!--<script src="js/angular.min.js"></script> -->
+    <script src="js/angular.min.js"></script>
     <script src="js/angular_module.js"></script>
     <!--<script src="node_modules/angular-route/angular-route.min.js"></script> -->
 
@@ -296,194 +320,150 @@
     <!-- <script src="js/easypie/jquery.easypiechart.min.js"></script> -->
 
     <!-- Script Control Grafico Gauge -->
+    
     <script>
-          var opts = {
-              lines: 12,
-              angle: 0,
-              lineWidth: 0.4,
-              pointer: {
-                  length: 0.75,
-                  strokeWidth: 0.042,
-                  color: '#1D212A'
-              },
-              limitMax: 'false',
-              colorStart: '#1ABC9C',
-              colorStop: '#1ABC9C',
-              strokeColor: '#F0F3F3',
-              generateGradient: true
-          };
-          //Gauge 1
-          var target = document.getElementById('foo'),
-              gauge = new Gauge(target).setOptions(opts);
 
-          gauge.maxValue = 600;
-          gauge.animationSpeed = 32;
-          gauge.set(320);
-          gauge.setTextField(document.getElementById("gauge-text"));
+    var json;
+    var gaugechart;
+    var curr;
+    var time;
+    var state = "on";
+    var tension = 215; //La tensión puede variar
+    var consumo = [];
 
-          //Gauge 2
-          var target = document.getElementById('foo1'),
-              gauge = new Gauge(target).setOptions(opts);
+    //Web Socket comunication
+    //Connect to server
+    var ws = new WebSocket("ws://localhost:8888/websocket");
+    //console.log(ws);
 
-          gauge.maxValue = 600;
-          gauge.animationSpeed = 32;
-          gauge.set(120);
-          gauge.setTextField(document.getElementById("gauge-text1"));
+    //Open the socket and say hi
+    ws.onopen = function() {
+      ws.send("Hello, world");
+    };
 
-          //Gauge 3
-          var target = document.getElementById('foo2'),
-              gauge = new Gauge(target).setOptions(opts);
+    //Receive message form server
+    ws.onmessage = function (evt) {
+      console.log("EVTDATA: " + evt.data);
+      //json = JSON.parse(evt.data);
+      //console.log(json);
 
-          gauge.maxValue = 600;
-          gauge.animationSpeed = 32;
-          gauge.set(420);
-          gauge.setTextField(document.getElementById("gauge-text2"));
+      //set the variables of the object to global variables
+      
+      json = JSON.parse(evt.data);   
+      console.log("JSON:" + json);   
+      curr = json.data;
+      state = json.estado;
+      //timestamp = json.timestamp;
+      console.log("curr: " + curr);
 
-          //Gauge 3
-          var target = document.getElementById('foo3'),
-              gauge = new Gauge(target).setOptions(opts);
-
-          gauge.maxValue = 600;
-          gauge.animationSpeed = 32;
-          gauge.set(490);
-          gauge.setTextField(document.getElementById("gauge-text3"));
-        </script>
+      curr = parseFloat(curr);
+      /*var date = new Date(timestamp*1000);
+      // Hours part from the timestamp
+      var hours = date.getHours();
+      // Minutes part from the timestamp
+      var minutes = date.getMinutes();
+      // Seconds part from the timestamp
+      var seconds = date.getSeconds();
+      // Format Time
+      time=hours + ":" + minutes + ":" + seconds;
+      */
+    };
 
 
-    <!-- Script Control Grafico Dona -->
-    <script>
-      $(function() {
-        $('.chart').easyPieChart({
-          easing: 'easeOutElastic',
-          delay: 3000,
-          barColor: '#26B99A',
-          trackColor: '#fff',
-          scaleColor: false,
-          lineWidth: 20,
-          trackWidth: 16,
-          lineCap: 'butt',
-          onStep: function(from, to, percent) {
-            $(this.el).find('.percent').text(Math.round(percent));
-          }
-        });
-      });
+    function on() {
+      //alert("ON");
+      ws.send(JSON.stringify({"relay1":1}));
+    };
+    function off() {
+      //alert("OFF");
+      ws.send(JSON.stringify({"relay1":0}));
+    };
+
+    $(function () {
+        $(document).ready(function () {
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            
+            });
+
+
+            $('#corriente_chart').highcharts({
+                chart: {
+                    type: 'spline',
+                    animation: Highcharts.svg, // don't animate in old IE
+                    marginRight: 10,
+                    events: {
+                        load: function () {
+
+                            // set up the updating of the chart each second
+                            var series = this.series[0];
+                            setInterval(function () {
+                                var x = (new Date()).getTime(), // current time
+                                    y = curr;
+                                series.addPoint([x, y], true, true);
+                            }, 1000);
+                        }
+                    }
+                },
+                title: {
+                    text: 'Corriente sensada por segundo'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150
+                },
+                yAxis: {
+                    title: {
+                        text: 'Watts'
+                    },
+                    min: 0,
+                    max: 100,
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#0000BB'
+                    }]
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                            Highcharts.numberFormat(this.y, 2);
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Corriente Medida por Segundo',
+                    color: '#0000BB',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+
+                        for (i = -19; i <= 0; i += 1) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: curr
+                            });
+                        }
+                        return data;
+                    }())
+                }],
+                credits: {
+                  enabled: false
+                },
+            });
+    });
+});
+
     </script>
 
-    <script>
-      $(document).ready(function() {
-        Chart.defaults.global.legend = {
-          enabled: false
-        };
-
-        new Chart(document.getElementById("canvas_line"), {
-          type: 'line',
-          data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-            datasets: [{
-              label: "My First dataset",
-              backgroundColor: "rgba(38, 185, 154, 0.31)",
-              borderColor: "rgba(38, 185, 154, 0.7)",
-              pointBorderColor: "rgba(38, 185, 154, 0.7)",
-              pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointBorderWidth: 1,
-              data: [31, 74, 6, 39, 20, 85, 7]
-            }, {
-              label: "My Second dataset",
-              backgroundColor: "rgba(3, 88, 106, 0.3)",
-              borderColor: "rgba(3, 88, 106, 0.70)",
-              pointBorderColor: "rgba(3, 88, 106, 0.70)",
-              pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(151,187,205,1)",
-              pointBorderWidth: 1,
-              data: [82, 23, 66, 9, 99, 4, 2]
-            }]
-          },
-        });
-
-        new Chart(document.getElementById("canvas_line1"), {
-          type: 'line',
-          data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-            datasets: [{
-              label: "My First dataset",
-              backgroundColor: "rgba(38, 185, 154, 0.31)",
-              borderColor: "rgba(38, 185, 154, 0.7)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointBorderWidth: 1,
-              data: [11, 24, 36, 49, 30, 25, 17]
-            }, {
-              label: "My Second dataset",
-              backgroundColor: "rgba(3, 88, 106, 0.3)",
-              borderColor: "rgba(3, 88, 106, 0.70)",
-              pointBorderColor: "rgba(3, 88, 106, 0.70)",
-              pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(151,187,205,1)",
-              pointBorderWidth: 1,
-              data: [82, 23, 66, 9, 99, 4, 2]
-            }]
-          },
-        });
-
-        new Chart(document.getElementById("canvas_line2"), {
-          type: 'line',
-          data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-            datasets: [{
-              label: "Consumo Eléctrico Efectivo",
-              backgroundColor: "rgba(38, 185, 154, 0.31)",
-              borderColor: "rgba(38, 185, 154, 0.7)",
-              pointBorderColor: "rgba(38, 185, 154, 0.7)",
-              pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointBorderWidth: 1,
-              data: [11, 84, 16, 29, 60, 25, 45]
-            }, {
-              label: "Consumo Eléctrico Estimado",
-              backgroundColor: "rgba(3, 88, 106, 0.3)",
-              borderColor: "rgba(3, 88, 106, 0.70)",
-              pointBorderColor: "rgba(3, 88, 106, 0.70)",
-              pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(151,187,205,1)",
-              pointBorderWidth: 1,
-              data: [32, 43, 86, 90, 59, 40, 20]
-            }]
-          },
-        });
-
-        new Chart(document.getElementById("canvas_line3"), {
-          type: 'line',
-          data: {
-            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-            datasets: [{
-              label: "My First dataset",
-              backgroundColor: "rgba(38, 185, 154, 0.31)",
-              borderColor: "rgba(38, 185, 154, 0.7)",
-              pointBorderColor: "rgba(38, 185, 154, 0.7)",
-              pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointBorderWidth: 1,
-              data: [31, 74, 6, 39, 20, 85, 7]
-            }, {
-              label: "My Second dataset",
-              backgroundColor: "rgba(3, 88, 106, 0.3)",
-              borderColor: "rgba(3, 88, 106, 0.70)",
-              pointBorderColor: "rgba(3, 88, 106, 0.70)",
-              pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(151,187,205,1)",
-              pointBorderWidth: 1,
-              data: [82, 23, 66, 9, 99, 4, 2]
-            }]
-          },
-        });
-      });
-    </script>
-</body>
 </html>
