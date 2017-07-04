@@ -11,3 +11,7 @@
 #botones_aulas{
   font-size:2em;
 }
+
+.buttons-onoff{
+  float: right;
+}
